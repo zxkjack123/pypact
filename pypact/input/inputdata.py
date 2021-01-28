@@ -318,8 +318,8 @@ class InputData(JSONSerializable):
             addcomment("monitor FISPACT-II progress")
             addkeyword('MONITOR', args=[1])
         
-        addcomment("the minimum cross section (barns) for inclusion in pathways analysis")
-        addkeyword('XSTHRESHOLD', args=[self._xsthreshold])
+        #addcomment("the minimum cross section (barns) for inclusion in pathways analysis")
+        #addkeyword('XSTHRESHOLD', args=[self._xsthreshold])
         
         if not self._ignorecollapse:
             if self._group != 0:

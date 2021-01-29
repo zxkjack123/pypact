@@ -40,7 +40,11 @@ class GammaSpectrum(JSONSerializable):
                     match = GAMMA_SPECTRUM_LINE_MATCHER.match(line)
                     lower_boundary = float(match.group("lb"))
                     upper_boundary = float(match.group("ub"))
-                    value = float(match.group("value"))
+                    try:
+                        # tiny number without E notation can be set to 0, eg: '3.44111-105'
+                        value = float(match.group("value"))
+                    except:
+                        value = 0.0
                     volumetric_rate = float(match.group("vr"))
                     yield lower_boundary, upper_boundary, value, volumetric_rate
 

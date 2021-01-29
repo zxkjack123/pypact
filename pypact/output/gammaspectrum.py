@@ -45,7 +45,10 @@ class GammaSpectrum(JSONSerializable):
                         value = float(match.group("value"))
                     except:
                         value = 0.0
-                    volumetric_rate = float(match.group("vr"))
+                    try:
+                        volumetric_rate = float(match.group("vr"))
+                    except:
+                        volumetric_rate = 0.0
                     yield lower_boundary, upper_boundary, value, volumetric_rate
 
         boundaries = []

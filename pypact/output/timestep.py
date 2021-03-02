@@ -71,7 +71,11 @@ class TimeStep(JSONSerializable):
                                 ignores=TIME_STEP_IGNORES,
                                 asstring=False)
 
+            # FISPACT-II 2012 has different starttag
+            flux2012 = get_value(starttag='NEUTRON  FLUX DURING INTERVAL', endtag='n/cm**2/s')
             self.flux = get_value(starttag='* * * FLUX AMP IS', endtag='/cm^2/s')
+            if self.flux <= 0.0:
+                self.flux = flux2012
 
             self.alpha_heat = get_value(starttag='TOTAL ALPHA HEAT PRODUCTION', endtag='kW')
             self.beta_heat = get_value(starttag='TOTAL BETA  HEAT PRODUCTION', endtag='kW')
